@@ -1,6 +1,5 @@
 package de.pixelgerecht.threateningknights.rules;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -8,19 +7,10 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class ThreatTest {
-    private SetPiece source;
-    private SetPiece target;
+    private final SetPiece source = mock(SetPiece.class);
+    private final SetPiece target = mock(SetPiece.class);
 
-    private Threat subject;
-
-
-    @Before
-    public void setUp() throws Exception {
-        source = mock(SetPiece.class);
-        target = mock(SetPiece.class);
-
-        subject = new Threat(source, target);
-    }
+    private final Threat subject = new Threat(source, target);
 
 
     @Test

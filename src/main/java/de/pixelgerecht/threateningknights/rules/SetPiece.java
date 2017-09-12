@@ -14,14 +14,26 @@ public class SetPiece {
         this.y = y;
     }
 
+    /**
+     * The piece on this position.
+     * @return A {@link Piece}.
+     */
     public Piece getPiece() {
         return piece;
     }
 
+    /**
+     * Portion of this piece on x-axis on board.
+     * @return A non-negative integer.
+     */
     int getX() {
         return x;
     }
 
+    /**
+     * Portion of this piece on y-axis on board.
+     * @return A non-negative integer.
+     */
     int getY() {
         return y;
     }

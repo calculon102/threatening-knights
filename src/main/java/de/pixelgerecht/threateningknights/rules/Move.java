@@ -12,6 +12,22 @@ public class Move {
         this.dy = dy;
     }
 
+    /**
+     * Delta of fields to translate on x-axis.
+     * @return A signed integer.
+     */
+    public int getDx() {
+        return dx;
+    }
+
+    /**
+     * Delta of fields to translate on y-axis.
+     * @return A signed integer.
+     */
+    public int getDy() {
+        return dy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,18 +47,6 @@ public class Move {
 
     @Override
     public String toString() {
-        return "Move(" +
-                 + dx +
-                ", "
-                 + dy +
-                ')';
-    }
-
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDy() {
-        return dy;
+        return "Move(" + dx + ", " + dy + ')';
     }
 }

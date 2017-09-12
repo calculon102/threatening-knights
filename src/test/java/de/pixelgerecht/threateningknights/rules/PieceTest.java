@@ -29,11 +29,9 @@ public class PieceTest {
         return parameters;
     }
 
-
     private final Type expectedType;
     private final Color expectedColor;
     private final Piece subject;
-
 
     public PieceTest(Type expectedType, Color expectedColor) {
         this.expectedType = expectedType;
@@ -41,7 +39,6 @@ public class PieceTest {
 
         subject = new Piece(expectedType, expectedColor);
     }
-
 
     @Test
     public void hasType() throws Exception {
@@ -61,5 +58,4 @@ public class PieceTest {
     public void implementsToString() throws Exception {
         assertThat(subject.toString(), equalTo(expectedColor + " " + expectedType));
     }
-
 }

@@ -2,25 +2,39 @@ package de.pixelgerecht.threateningknights.rules;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import static de.pixelgerecht.threateningknights.rules.Color.BLACK;
 import static de.pixelgerecht.threateningknights.rules.Color.WHITE;
 import static de.pixelgerecht.threateningknights.rules.Type.KNIGHT;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+@RunWith(Parameterized.class)
 public class SetPieceTest {
 
-    private Piece expectedPiece;
-    private int expectedX;
-    private int expectedY;
+    private final Piece expectedPiece;
+    private final int expectedX;
+    private final int expectedY;
 
-    private SetPiece subject;
+    private final SetPiece subject;
 
-    @Before
-    public void setUp() throws Exception {
-        expectedPiece = new Piece(KNIGHT, WHITE);
-        expectedX = 0;
-        expectedY = 1;
+    @Parameterized.Parameters(name="{0} on ({1},{2})")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+                { new Piece(KNIGHT, WHITE), 0, 1 },
+                { new Piece(KNIGHT, BLACK), 1, 0 }
+        });
+    }
+
+    public SetPieceTest(Piece expectedPiece, int expectedX, int expectedY) {
+        this.expectedPiece = expectedPiece;
+        this.expectedX = expectedX;
+        this.expectedY = expectedY;
         subject = new SetPiece(expectedPiece, expectedX, expectedY);
     }
 

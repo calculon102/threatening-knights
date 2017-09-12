@@ -1,7 +1,7 @@
 package de.pixelgerecht.threateningknights.solution;
 
 import de.pixelgerecht.threateningknights.rules.Board;
-import de.pixelgerecht.threateningknights.rules.BoardThreats;
+import de.pixelgerecht.threateningknights.rules.ThreatDetector;
 import de.pixelgerecht.threateningknights.rules.Threat;
 
 import java.util.Iterator;
@@ -17,8 +17,8 @@ enum SituationDetector {
     SYMMETRIC_THREAT {
         @Override
         boolean test(Board situation) {
-            BoardThreats threats = new BoardThreats(situation);
-            Set<Threat> allThreats = threats.detectAll();
+            ThreatDetector threats = new ThreatDetector(situation);
+            Set<Threat> allThreats = threats.findAll();
 
             if (allThreats.size() != 2) {
                 return false;

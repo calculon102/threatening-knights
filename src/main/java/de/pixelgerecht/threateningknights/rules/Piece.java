@@ -12,10 +12,18 @@ public class Piece {
         this.color = color;
     }
 
+    /**
+     * Type of this piece.
+     * @return A {@link Type}.
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     * Color of this piece.
+     * @return A {@link Color}.
+     */
     public Color getColor() {
         return color;
     }

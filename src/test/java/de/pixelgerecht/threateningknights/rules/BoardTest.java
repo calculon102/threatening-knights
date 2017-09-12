@@ -27,18 +27,44 @@ public class BoardTest {
     }
 
     @Test
-    public void canAddPieces() throws Exception {
+    public void noPiecesOnEmptyBoard() throws Exception {
         Board board = new Board(1, 1);
 
         Optional<SetPiece> actual = board.getPiece(0, 0);
         assertThat(actual.isPresent(), equalTo(false));
+    }
 
+    @Test
+    public void noPiecesOnIllegalPositions() throws Exception {
+        Board board = new Board(1, 1);
+
+        Optional<SetPiece> actual = board.getPiece(-1, 0);
+        assertThat(actual.isPresent(), equalTo(false));
+
+        actual = board.getPiece(0, -1);
+        assertThat(actual.isPresent(), equalTo(false));
+
+        actual = board.getPiece(-1, -1);
+        assertThat(actual.isPresent(), equalTo(false));
+
+        actual = board.getPiece(1, 0);
+        assertThat(actual.isPresent(), equalTo(false));
+
+        actual = board.getPiece(0, 1);
+        assertThat(actual.isPresent(), equalTo(false));
+
+        actual = board.getPiece(1, 1);
+        assertThat(actual.isPresent(), equalTo(false));
+    }
+
+    @Test
+    public void canAddPieces() throws Exception {
         Piece piece = new Piece(Type.KNIGHT, Color.WHITE);
         SetPiece expected = new SetPiece(piece,0,0);
 
-        board = new Board(1, 1, expected);
+        Board board = new Board(1, 1, expected);
 
-        actual = board.getPiece(0, 0);
+        Optional<SetPiece> actual = board.getPiece(0, 0);
 
         assertThat(actual.isPresent(), equalTo(true));
         assertThat(actual, equalTo(Optional.of(expected)));

@@ -32,10 +32,18 @@ public class Board {
         }
     }
 
+    /**
+     * Number of fields of this board on x-axis.
+     * @return An integer.
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Number of fields of this board on y-axis.
+     * @return An integer.
+     */
     public int getHeight() {
         return height;
     }
@@ -45,11 +53,14 @@ public class Board {
      * @param piece Piece to be set.
      */
     private void addPiece(SetPiece piece) {
-        if (!isValidPosition(piece.getX(), piece.getY())) {
+        int x = piece.getX();
+        int y = piece.getY();
+
+        if (!isValidPosition(x, y)) {
             throw new IllegalArgumentException("piece has invalid position!!");
         }
 
-        pieces[piece.getX()][piece.getY()] = piece.getPiece();
+        pieces[x][y] = piece.getPiece();
     }
 
     /**
@@ -59,6 +70,10 @@ public class Board {
      * @return Piece on position or empty if none present.
      */
     public Optional<SetPiece> getPiece(int x, int y) {
+        if (!isValidPosition(x, y)) {
+            return Optional.empty();
+        }
+
         Piece piece = pieces[x][y];
         if (piece == null) {
             return Optional.empty();
