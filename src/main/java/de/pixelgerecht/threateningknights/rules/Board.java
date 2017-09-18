@@ -57,7 +57,7 @@ public class Board {
         int y = piece.getY();
 
         if (!isValidPosition(x, y)) {
-            throw new IllegalArgumentException("piece has invalid position!!");
+            throw new IllegalArgumentException("Invalid position for new piece: ("+x+", "+y+")");
         }
 
         pieces[x][y] = piece.getPiece();

@@ -75,17 +75,20 @@ class ChessBoard {
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (fieldPanes[x][y] == null) {
+
+                BorderPane pane = fieldPanes[x][y];
+                if (pane == null) {
                     throw new IllegalStateException("Call create() first!");
                 }
 
-                fieldPanes[x][y].getChildren().clear();
+                pane.getChildren().clear();
 
-                Optional<SetPiece> piece = situation.getPiece(x, y);
-                if (piece.isPresent()) {
-                    RenderedPiece renderedPiece = new RenderedPiece(piece.get().getPiece());
-                    fieldPanes[x][y].setCenter(renderedPiece.asNode());
-                }
+                Optional<SetPiece> setPiece = situation.getPiece(x, y);
+
+                setPiece.map(SetPiece::getPiece)
+                        .map(RenderedPiece::new)
+                        .map(RenderedPiece::asNode)
+                        .ifPresent(pane::setCenter);
             }
         }
     }

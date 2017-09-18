@@ -82,5 +82,13 @@ public class BoardTest {
         assertThat(board.isValidPosition(1, 0), equalTo(false));
         assertThat(board.isValidPosition(1, 1), equalTo(false));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void wontAcceptPiecesOnIllegalPositions() throws Exception {
+        Piece piece = new Piece(Type.KNIGHT, Color.WHITE);
+        SetPiece expected = new SetPiece(piece,-1,0);
+
+        new Board(1, 1, expected);
+    }
 }
 
